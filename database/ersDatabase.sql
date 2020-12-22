@@ -9,7 +9,7 @@ create table reimbursements (
 	reimb_approved timestamp,
 	reimb_description text,
 	reimb_receipt bytea,
-	reimb_author int not null,
+	reimb_author int not null references users (user_id),
 	reimb_resolver int,
 	reimb_status_id int,
 	reimb_type_id, int	
