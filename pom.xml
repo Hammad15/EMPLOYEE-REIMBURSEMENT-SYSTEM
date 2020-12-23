@@ -22,7 +22,7 @@
   </dependencies>
   
   <build>
-  	<finalName>firstServlets</finalName>
+  	<finalName>firstservlets</finalName>
   </build>
   
 </project>
