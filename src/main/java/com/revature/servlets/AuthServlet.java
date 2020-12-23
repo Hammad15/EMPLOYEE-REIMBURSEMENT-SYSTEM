@@ -31,19 +31,23 @@ public class AuthServlet extends HttpServlet{
 		System.out.println(cred.getUsername());
 		System.out.println(cred.getPassword());
 		
-//		try {
-//			us = log.login(cred.getUsername(), cred.getPassword());
-//		} catch (UserNotFoundException e) {
-//			System.out.println("User Not Found");
-//			e.printStackTrace();
-//		} catch (InternalErrorException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println(us);
+		us.setUsername(cred.getUsername());
+		us.setPassword(cred.getPassword());
 		
-		resp.setStatus(501);
+		try {
+			us = log.login(cred.getUsername(), cred.getPassword());
+		} catch (UserNotFoundException e) {
+			System.out.println("User Not Found");
+			e.printStackTrace();
+		} catch (InternalErrorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(us);
+		
+		resp.setStatus(200);
+		resp.getWriter().write(om.writeValueAsString(us));
 		
 	}
 

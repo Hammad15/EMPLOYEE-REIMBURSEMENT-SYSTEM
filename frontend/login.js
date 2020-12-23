@@ -2,7 +2,7 @@
 
 async function loginSubmit(e){
 
-    e.printDefault();
+    e.preventDefault();
 
     let username = document.getElementById("username-input").value
     let password = document.getElementById("password-input").value
@@ -17,7 +17,7 @@ async function loginSubmit(e){
             method:"POST",
             body: JSON.stringify(credentials),
             headers:{
-                "Content-Type" : "application.JSON"
+                "Content-Type" : "application.json"
             }
         })
     
@@ -30,4 +30,4 @@ async function loginSubmit(e){
 
 }
 
-document.getElementsByTagName("form")[0].addEventListener("submit", loginSubmit);
+document.getElementsByTagName("form")[0].addEventListener('submit', loginSubmit);
