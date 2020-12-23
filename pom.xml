@@ -3,6 +3,26 @@
   <groupId>com.revature.ers</groupId>
   <artifactId>ers-app</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>ERS Application</name>
   <description>A web application to manage reimbursement requests of employees for incurred company expenses.</description>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.10.1</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+  	<finalName>firstServlets</finalName>
+  </build>
+  
 </project>

@@ -2,17 +2,9 @@ drop schema if exists project1 cascade;
 create schema project1;
 set schema 'project1';
 
-create table reimbursements (
-	reimb_id serial primary key,
-	reimb_amount text not null,
-	reimb_submitted timestamp not null,
-	reimb_approved timestamp,
-	reimb_description text,
-	reimb_receipt bytea,
-	reimb_author int not null references users (user_id),
-	reimb_resolver int,
-	reimb_status_id int,
-	reimb_type_id, int	
+create table user_roles (
+	user_role_id serial primary key,
+	user_role text not null
 );
 
 create table users (
@@ -22,12 +14,12 @@ create table users (
 	first_name text not null,
 	last_name text not null,
 	email text unique not null,
-	user_role_id int
+	user_role_id int not null references user_roles
 );
 
 create table reimbursement_status (
 	reimb_status_id serial primary key,
-	reimb_status text default 'pending'
+	reimb_status text not null default 'pending'
 	
 );
 
@@ -37,9 +29,17 @@ create table reimbursement_type (
 	
 );
 
-create table user_roles (
-	user_role_id serial primary key,
-	user_role text not null
+create table reimbursements (
+	reimb_id serial primary key,
+	reimb_amount int not null,
+	reimb_submitted timestamp not null,
+	reimb_approved timestamp,
+	reimb_description text,
+	reimb_receipt bytea,
+	reimb_author int not null references users,
+	reimb_resolver int references users,
+	reimb_status_id int not null references reimbursement_status,
+	reimb_type_id int not null references reimbursement_type
 );
 
 --ALTER SEQUENCE accounts_account_number_seq RESTART WITH 123000;
