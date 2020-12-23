@@ -8,6 +8,10 @@
 	<packaging>war</packaging>
 	<name>ERS Application</name>
 	<description>A web application to manage reimbursement requests of employees for incurred company expenses.</description>
+	<properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
 	<dependencies>
 		<dependency>
@@ -30,7 +34,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>firstservlets</finalName>
+		<finalName>ersApp</finalName>
 	</build>
 
 </project>

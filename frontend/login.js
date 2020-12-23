@@ -13,7 +13,7 @@ async function loginSubmit(e){
     }
 
     try{
-        let res = await fetch("http://localhost:8080/ers-app/login", {
+        let res = await fetch("http://localhost:8080/ersApp/login", {
             method:"POST",
             body: JSON.stringify(credentials),
             headers:{
