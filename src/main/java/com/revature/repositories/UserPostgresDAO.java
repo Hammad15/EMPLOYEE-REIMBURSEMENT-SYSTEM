@@ -10,7 +10,7 @@ import com.revature.exceptions.UserNotFoundException;
 import com.revature.models.User;
 import com.revature.util.ConnectionFactory;
 
-public class UserDAOImpl implements UserDAO {
+public class UserPostgresDAO implements UserDAO {
 
 	private ConnectionFactory cf = ConnectionFactory.getConnectionFactory();
 
@@ -35,12 +35,12 @@ public class UserDAOImpl implements UserDAO {
 				
 				return u;
 			}else {
-				throw new UserNotFoundException();
+				throw new UserNotFoundException("Username Not Found", 401);
 			}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
-			throw new InternalErrorException();
+			throw new InternalErrorException("Oops, something went wrong", 500);
 		} finally {
 			cf.releaseConnection(conn);
 		}

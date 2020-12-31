@@ -1,14 +1,11 @@
 package com.revature.exceptions;
 
-public class UserNotFoundException extends Exception {
+@SuppressWarnings("serial")
+public class UserNotFoundException extends AbstractHttpException {
 
-	public UserNotFoundException() {
-		super("User Not Found\nYou will be returned to the main menu.\n\n");
+	public UserNotFoundException(String message, int statusCode) {
+		super(message, statusCode);
+		// TODO Auto-generated constructor stub
 	}
-	
-	public String getMessage() {
-		return "User Not Found\nYou will be returned to the main menu.\n\n";
-	}
-	
 
 }

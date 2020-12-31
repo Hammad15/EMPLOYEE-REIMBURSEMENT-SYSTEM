@@ -16,9 +16,9 @@ public class Reimbursement {
 	
 	private String reimbReceipt;
 	
-	private String reimbAuthor;
+	private int reimbAuthor;
 	
-	private String reimbResolver;
+	private int reimbResolver;
 	
 	private String reimbStatus;
 	
@@ -30,7 +30,7 @@ public class Reimbursement {
 	}
 
 	public Reimbursement(int reimbID, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbApproved,
-			String reimbDescription, String reimbReceipt, String reimbAuthor, String reimbResolver, String reimbStatus,
+			String reimbDescription, String reimbReceipt, int reimbAuthor, int reimbResolver, String reimbStatus,
 			String reimbType) {
 		super();
 		this.reimbID = reimbID;
@@ -93,19 +93,19 @@ public class Reimbursement {
 		this.reimbReceipt = reimbReceipt;
 	}
 
-	public String getReimbAuthor() {
+	public int getReimbAuthor() {
 		return reimbAuthor;
 	}
 
-	public void setReimbAuthor(String reimbAuthor) {
+	public void setReimbAuthor(int reimbAuthor) {
 		this.reimbAuthor = reimbAuthor;
 	}
 
-	public String getReimbResolver() {
+	public int getReimbResolver() {
 		return reimbResolver;
 	}
 
-	public void setReimbResolver(String reimbResolver) {
+	public void setReimbResolver(int reimbResolver) {
 		this.reimbResolver = reimbResolver;
 	}
 
@@ -139,11 +139,11 @@ public class Reimbursement {
 		int result = 1;
 		result = prime * result + reimbAmount;
 		result = prime * result + ((reimbApproved == null) ? 0 : reimbApproved.hashCode());
-		result = prime * result + ((reimbAuthor == null) ? 0 : reimbAuthor.hashCode());
+		result = prime * result + reimbAuthor;
 		result = prime * result + ((reimbDescription == null) ? 0 : reimbDescription.hashCode());
 		result = prime * result + reimbID;
 		result = prime * result + ((reimbReceipt == null) ? 0 : reimbReceipt.hashCode());
-		result = prime * result + ((reimbResolver == null) ? 0 : reimbResolver.hashCode());
+		result = prime * result + reimbResolver;
 		result = prime * result + ((reimbStatus == null) ? 0 : reimbStatus.hashCode());
 		result = prime * result + ((reimbSubmitted == null) ? 0 : reimbSubmitted.hashCode());
 		result = prime * result + ((reimbType == null) ? 0 : reimbType.hashCode());
@@ -166,10 +166,7 @@ public class Reimbursement {
 				return false;
 		} else if (!reimbApproved.equals(other.reimbApproved))
 			return false;
-		if (reimbAuthor == null) {
-			if (other.reimbAuthor != null)
-				return false;
-		} else if (!reimbAuthor.equals(other.reimbAuthor))
+		if (reimbAuthor != other.reimbAuthor)
 			return false;
 		if (reimbDescription == null) {
 			if (other.reimbDescription != null)
@@ -183,10 +180,7 @@ public class Reimbursement {
 				return false;
 		} else if (!reimbReceipt.equals(other.reimbReceipt))
 			return false;
-		if (reimbResolver == null) {
-			if (other.reimbResolver != null)
-				return false;
-		} else if (!reimbResolver.equals(other.reimbResolver))
+		if (reimbResolver != other.reimbResolver)
 			return false;
 		if (reimbStatus == null) {
 			if (other.reimbStatus != null)
@@ -205,5 +199,5 @@ public class Reimbursement {
 			return false;
 		return true;
 	}
-
+	
 }

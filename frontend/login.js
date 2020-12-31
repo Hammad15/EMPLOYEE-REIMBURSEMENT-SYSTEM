@@ -17,7 +17,7 @@ async function loginSubmit(e){
             method:"POST",
             body: JSON.stringify(credentials),
             headers:{
-                "Content-Type" : "application.json"
+                "Content-Type" : "application/json"
             }
         })
     

@@ -1,11 +1,12 @@
 package com.revature.exceptions;
 
-public class InternalErrorException extends Exception {
-	public InternalErrorException() {
-		super("OOPS, something went wrong");
+@SuppressWarnings("serial")
+public class InternalErrorException extends AbstractHttpException {
+
+	public InternalErrorException(String message, int statusCode) {
+		super(message, statusCode);
+		// TODO Auto-generated constructor stub
 	}
 	
-	public String getMessage() {
-		return "OOPS, something went wrong.\n\n";
-	}
 }
+	
