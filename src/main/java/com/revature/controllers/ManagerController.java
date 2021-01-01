@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.exceptions.UnauthenticatedException;
 import com.revature.exceptions.UnauthorizedException;
 import com.revature.models.Reimbursement;
+import com.revature.models.User;
 import com.revature.services.ManagerServices;
 
 public class ManagerController {
@@ -107,6 +108,8 @@ public class ManagerController {
 		int reimbID = Integer.parseInt(reimbID_S);
 
 		HttpSession session = req.getSession();
+		
+		User u = (User)req.getAttribute("User");
 
 		if (session.getAttribute("UserRole") == null) {
 			throw new UnauthenticatedException();
@@ -114,7 +117,7 @@ public class ManagerController {
 			throw new UnauthorizedException();
 		}
 
-		ms.approveRequest(reimbID);
+		ms.approveRequest(reimbID, u.getUserID());
 
 		res.setStatus(200);
 		res.getWriter().write("The reimbursement request with ID: " + reimbID + " has been approved");
@@ -129,6 +132,8 @@ public class ManagerController {
 		int reimbID = Integer.parseInt(reimbID_S);
 
 		HttpSession session = req.getSession();
+		
+		User u = (User)req.getAttribute("User");
 
 		if (session.getAttribute("UserRole") == null) {
 			throw new UnauthenticatedException();
@@ -136,7 +141,7 @@ public class ManagerController {
 			throw new UnauthorizedException();
 		}
 
-		ms.denyRequest(reimbID);
+		ms.denyRequest(reimbID, u.getUserID());
 
 		res.setStatus(200);
 		res.getWriter().write("The reimbursement request with ID: " + reimbID + " has been approved");

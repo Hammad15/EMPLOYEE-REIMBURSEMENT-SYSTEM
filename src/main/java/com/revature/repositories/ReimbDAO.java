@@ -19,9 +19,9 @@ public interface ReimbDAO {
 	
 	public List<Reimbursement> findAll(int userID) throws UserNotFoundException;
 	
-	public void approveReq(int reimbID) throws InternalErrorException;
+	public void approveReq(int reimbID, int userID) throws InternalErrorException;
 	
-	public void denyReq(int reimbID) throws InternalErrorException;
+	public void denyReq(int reimbID, int userID) throws InternalErrorException;
 	
 	public void submitRequest(int userID, int amount, String description, String receipt, String type) throws InternalErrorException;
 	

@@ -31,6 +31,7 @@ public class UserPostgresDAO implements UserDAO {
 				u.setFirstName(res.getString("first_name"));
 				u.setLastName(res.getString("last_name"));
 				u.setEmail(res.getString("email"));
+				u.setUserRole(res.getString("user_role"));
 				u.setUserRoleID(res.getInt("user_role_id"));
 				
 				return u;

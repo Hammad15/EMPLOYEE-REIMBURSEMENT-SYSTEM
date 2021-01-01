@@ -11,15 +11,15 @@ public class ManagerServices {
 	ReimbDAO reimbDAO = new ReimbPostgresDAO();
 
 	
-	public void approveRequest(int reimbID) {
+	public void approveRequest(int reimbID, int userID) {
 
-		reimbDAO.approveReq(reimbID);
+		reimbDAO.approveReq(reimbID, userID);
 
 	}
 
-	public void denyRequest(int reimbID) {
+	public void denyRequest(int reimbID, int userID) {
 
-		reimbDAO.denyReq(reimbID);
+		reimbDAO.denyReq(reimbID, userID);
 
 	}
 

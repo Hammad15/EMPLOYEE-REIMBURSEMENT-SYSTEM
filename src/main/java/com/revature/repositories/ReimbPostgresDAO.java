@@ -40,9 +40,9 @@ public class ReimbPostgresDAO implements ReimbDAO {
 				r.setReimbDescription(res.getString("reimb_description"));
 				r.setReimbReceipt(res.getString("reimb_receipt"));
 				r.setReimbAuthor(res.getInt("reimb_author"));
-				r.setReimbResolver(res.getInt("reimb_author"));
-				r.setReimbStatus(res.getString("reimb_author"));
-				r.setReimbType(res.getString("reimb_author"));
+				r.setReimbResolver(res.getInt("reimb_resolver"));
+				r.setReimbStatus(res.getString("reimb_status"));
+				r.setReimbType(res.getString("reimb_type"));
 				reimbursements.add(r);
 			}
 			if (reimbursements.isEmpty()) {
@@ -83,9 +83,9 @@ public class ReimbPostgresDAO implements ReimbDAO {
 				r.setReimbDescription(res.getString("reimb_description"));
 				r.setReimbReceipt(res.getString("reimb_receipt"));
 				r.setReimbAuthor(res.getInt("reimb_author"));
-				r.setReimbResolver(res.getInt("reimb_author"));
-				r.setReimbStatus(res.getString("reimb_author"));
-				r.setReimbType(res.getString("reimb_author"));
+				r.setReimbResolver(res.getInt("reimb_resolver"));
+				r.setReimbStatus(res.getString("reimb_status"));
+				r.setReimbType(res.getString("reimb_type"));
 				reimbursements.add(r);
 			}
 			if (reimbursements.isEmpty()) {
@@ -125,9 +125,9 @@ public class ReimbPostgresDAO implements ReimbDAO {
 				r.setReimbDescription(res.getString("reimb_description"));
 				r.setReimbReceipt(res.getString("reimb_receipt"));
 				r.setReimbAuthor(res.getInt("reimb_author"));
-				r.setReimbResolver(res.getInt("reimb_author"));
-				r.setReimbStatus(res.getString("reimb_author"));
-				r.setReimbType(res.getString("reimb_author"));
+				r.setReimbResolver(res.getInt("reimb_resolver"));
+				r.setReimbStatus(res.getString("reimb_status"));
+				r.setReimbType(res.getString("reimb_type"));
 				reimbursements.add(r);
 			}
 			if (reimbursements.isEmpty()) {
@@ -169,9 +169,9 @@ public class ReimbPostgresDAO implements ReimbDAO {
 				r.setReimbDescription(res.getString("reimb_description"));
 				r.setReimbReceipt(res.getString("reimb_receipt"));
 				r.setReimbAuthor(res.getInt("reimb_author"));
-				r.setReimbResolver(res.getInt("reimb_author"));
-				r.setReimbStatus(res.getString("reimb_author"));
-				r.setReimbType(res.getString("reimb_author"));
+				r.setReimbResolver(res.getInt("reimb_resolver"));
+				r.setReimbStatus(res.getString("reimb_status"));
+				r.setReimbType(res.getString("reimb_type"));
 				reimbursements.add(r);
 			}
 			if (reimbursements.isEmpty()) {
@@ -210,6 +210,8 @@ public class ReimbPostgresDAO implements ReimbDAO {
 			submitReimbRequest.setString(6, type);
 
 			submitReimbRequest.executeUpdate();
+			
+			System.out.println("Request submitted successfully for reimbursement worth " + amount + ".");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -220,17 +222,23 @@ public class ReimbPostgresDAO implements ReimbDAO {
 	}
 
 	@Override
-	public void approveReq(int reimbID) throws InternalErrorException {
+	public void approveReq(int reimbID, int userID) throws InternalErrorException {
 
 		Connection conn = cf.getConnection();
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 		try {
 
-			String sql = "update reimbursements set reimb_status = 'approved' where reimb_id = ?;";
+			String sql = "update reimbursements set reimb_status = 'approved', reimb_resolver = ?, reimb_approved = ? where reimb_id = ?;";
 			PreparedStatement approveReimbRequest = conn.prepareStatement(sql);
-			approveReimbRequest.setInt(1, reimbID);
+			approveReimbRequest.setInt(1, userID);
+			approveReimbRequest.setTimestamp(2, timestamp);
+			approveReimbRequest.setInt(3, reimbID);
 
 			approveReimbRequest.executeUpdate();
+			
+			System.out.println("The request with Reimbursement ID: " + reimbID + " has been approved");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -242,17 +250,20 @@ public class ReimbPostgresDAO implements ReimbDAO {
 	}
 
 	@Override
-	public void denyReq(int reimbID) throws InternalErrorException {
+	public void denyReq(int reimbID, int userID) throws InternalErrorException {
 		
 		Connection conn = cf.getConnection();
 
 		try {
 
-			String sql = "update reimbursements set reimb_status = 'denied' where reimb_id = ?;";
-			PreparedStatement approveReimbRequest = conn.prepareStatement(sql);
-			approveReimbRequest.setInt(1, reimbID);
+			String sql = "update reimbursements set reimb_status = 'denied', reimb_resolver = ? where reimb_id = ?;";
+			PreparedStatement denyReimbRequest = conn.prepareStatement(sql);
+			denyReimbRequest.setInt(1, userID);
+			denyReimbRequest.setInt(2, reimbID);
 
-			approveReimbRequest.executeUpdate();
+			denyReimbRequest.executeUpdate();
+			
+			System.out.println("The request with Reimbursement ID: " + reimbID + " has been denied");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -285,9 +296,9 @@ public class ReimbPostgresDAO implements ReimbDAO {
 				r.setReimbDescription(res.getString("reimb_description"));
 				r.setReimbReceipt(res.getString("reimb_receipt"));
 				r.setReimbAuthor(res.getInt("reimb_author"));
-				r.setReimbResolver(res.getInt("reimb_author"));
-				r.setReimbStatus(res.getString("reimb_author"));
-				r.setReimbType(res.getString("reimb_author"));
+				r.setReimbResolver(res.getInt("reimb_resolver"));
+				r.setReimbStatus(res.getString("reimb_status"));
+				r.setReimbType(res.getString("reimb_type"));
 				
 				status = r.getReimbStatus();	
 			}
@@ -331,9 +342,9 @@ public class ReimbPostgresDAO implements ReimbDAO {
 				r.setReimbDescription(res.getString("reimb_description"));
 				r.setReimbReceipt(res.getString("reimb_receipt"));
 				r.setReimbAuthor(res.getInt("reimb_author"));
-				r.setReimbResolver(res.getInt("reimb_author"));
-				r.setReimbStatus(res.getString("reimb_author"));
-				r.setReimbType(res.getString("reimb_author"));
+				r.setReimbResolver(res.getInt("reimb_resolver"));
+				r.setReimbStatus(res.getString("reimb_status"));
+				r.setReimbType(res.getString("reimb_type"));
 				reimbursements.add(r);
 			}
 			if (reimbursements.isEmpty()) {
