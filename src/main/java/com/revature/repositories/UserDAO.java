@@ -8,6 +8,4 @@ public interface UserDAO {
 	
 	public User findUserByUsernameAndPassword(String username, String password) throws UserNotFoundException, InternalErrorException;
 	
-	
-
 }

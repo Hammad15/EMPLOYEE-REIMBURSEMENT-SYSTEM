@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.exceptions.UnauthenticatedException;
 import com.revature.exceptions.UnauthorizedException;
 import com.revature.models.Reimbursement;
+import com.revature.models.User;
 import com.revature.services.EmployeeServices;
 
 public class EmployeeController {
@@ -20,19 +21,64 @@ public class EmployeeController {
 	private ObjectMapper om = new ObjectMapper();
 	
 
-	public void findAllReimRequests(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public void submitReimbRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
-		HttpSession sess = req.getSession();
+		Reimbursement reimb = om.readValue(req.getInputStream(), Reimbursement.class);
 		
-		if(sess.getAttribute("User-Role") == null) {
+		HttpSession session = req.getSession();		
+		
+		if(session.getAttribute("UserRole") == null) {
 			throw new UnauthenticatedException();
-		} else if(!sess.getAttribute("User-Role").equals("Admin")) {
+		} else if(!session.getAttribute("UserRole").equals("employee")) {
 			throw new UnauthorizedException();
 		}
-		List<Reimbursement> allReimbursements = es.findAll();
+		
+		User u = (User)req.getAttribute("User");
+		
+		es.submitRequest(u.getUserID(), reimb.getReimbAmount(), reimb.getReimbDescription(), reimb.getReimbReceipt(), reimb.getReimbType());
+		
+		res.setStatus(200);
+		res.getWriter().write("The request has been submitted");
+		
+	}
+	
+	public void checkReimbRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		HttpSession session = req.getSession();
+		
+		if(session.getAttribute("UserRole") == null) {
+			throw new UnauthenticatedException();
+		} else if(!session.getAttribute("UserRole").equals("employee")) {
+			throw new UnauthorizedException();
+		}
+		
+		User u = (User)req.getAttribute("User");
+		
+		String status = es.checkStatus(u.getUserID());
+		
+		res.setStatus(200);
+		res.getWriter().write(status);
+		
+	}
+	
+	
+	public void viewAllRequests(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		HttpSession session = req.getSession();
+		
+		if(session.getAttribute("UserRole") == null) {
+			throw new UnauthenticatedException();
+		} else if(!session.getAttribute("UserRole").equals("employee")) {
+			throw new UnauthorizedException();
+		}
+		
+		User u = (User)req.getAttribute("User");
+		
+		List<Reimbursement> allReimbursements = es.viewAllRequests(u.getUserID());
+		
 		res.setStatus(200);
 		res.getWriter().write(om.writeValueAsString(allReimbursements));
 		
 	}
-	
+
 }

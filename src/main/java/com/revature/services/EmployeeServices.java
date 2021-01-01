@@ -9,11 +9,21 @@ public class EmployeeServices {
 	
 	ReimbPostgresDAO reimbDAO = new ReimbPostgresDAO();
 
-	public List<Reimbursement> findAll() {
+	public void submitRequest(int userID, int amount, String description, String receipt, String type) {
 		
-		List<Reimbursement> allReimbs = reimbDAO.findAll();
+		reimbDAO.submitRequest(userID, amount, description, receipt, type);
 		
-		return allReimbs;
+	}
+	
+	public String checkStatus(int reimbID) {
+				
+		return reimbDAO.checkRequest(reimbID);
+	}
+	
+	public List<Reimbursement> viewAllRequests(int userID) {
+		
+		return reimbDAO.viewRequests(userID);
+		
 	}
 
 }

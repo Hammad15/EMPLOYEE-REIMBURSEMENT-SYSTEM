@@ -78,7 +78,7 @@ public class FrontController extends HttpServlet {
 			case "/reimbursements":
 				switch (req.getMethod()) {
 					case "GET":
-						empController.findAllReimRequests(req, res);
+						empController.viewAllRequests(req, res);
 						break;
 					case "POST":
 						res.setStatus(400);

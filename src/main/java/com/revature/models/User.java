@@ -15,6 +15,8 @@ public class User {
 	private String email;
 	
 	private int userRoleID;
+	
+	private String userRole;
 
 	public User() {
 		super();
@@ -22,7 +24,7 @@ public class User {
 	}
 
 	public User(int userID, String username, String password, String firstName, String lastName, String email,
-			int userRoleID) {
+			int userRoleID, String userRole) {
 		super();
 		UserID = userID;
 		this.username = username;
@@ -31,6 +33,7 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.userRoleID = userRoleID;
+		this.userRole = userRole;
 	}
 
 	public int getUserID() {
@@ -89,10 +92,19 @@ public class User {
 		this.userRoleID = userRoleID;
 	}
 
+	public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
 	@Override
 	public String toString() {
 		return "User [UserID=" + UserID + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", userRoleID=" + userRoleID + "]";
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", userRoleID=" + userRoleID
+				+ ", userRole=" + userRole + "]";
 	}
 
 	@Override
@@ -104,6 +116,7 @@ public class User {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
 		result = prime * result + userRoleID;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -139,6 +152,11 @@ public class User {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
+			return false;
+		if (userRole == null) {
+			if (other.userRole != null)
+				return false;
+		} else if (!userRole.equals(other.userRole))
 			return false;
 		if (userRoleID != other.userRoleID)
 			return false;
