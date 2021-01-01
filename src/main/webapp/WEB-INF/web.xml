@@ -4,15 +4,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<display-name>ers-app</display-name>
-	
+
 	<servlet>
 		<servlet-name>FrontController</servlet-name>
 		<servlet-class>com.revature.servlets.FrontController</servlet-class>
+		<init-param>
+			<param-name>DefaultRole</param-name>
+			<param-value>User</param-value>
+		</init-param>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>FrontController</servlet-name>
-		<url-pattern>/login</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>

@@ -4,8 +4,9 @@ package com.revature.exceptions;
 public class UserNotFoundException extends AbstractHttpException {
 
 	public UserNotFoundException(String message, int statusCode) {
+	
 		super(message, statusCode);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }
