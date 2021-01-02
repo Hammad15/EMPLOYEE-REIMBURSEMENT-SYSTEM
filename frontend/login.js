@@ -22,7 +22,28 @@ async function loginSubmit(e){
         })
     
         let user = await res.json()
+
         console.log(user);
+
+        let h = res.headers;
+
+        console.log(h);
+
+        let storage = window.sessionStorage
+
+        storage.setItem("username",user.username)
+        storage.setItem("firstName",user.firstName)
+        storage.setItem("lastName",user.lastName)
+        storage.setItem("userID",user.userID)
+        storage.setItem("userRole",user.userRole)
+
+        if (user.userRole == "employee") {
+            window.location = "employee-main.html"
+        } else if (user.userRole == "manager") {
+            window.location = "manager-main.html"
+        } else {
+            console.log("error")
+        }
 
     } catch (e) {
         console.log(e);
