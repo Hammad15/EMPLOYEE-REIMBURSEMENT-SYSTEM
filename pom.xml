@@ -6,7 +6,7 @@
 	<artifactId>ers-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>ERS Application</name>
+	<name>ERS-Application</name>
 	<description>A web application to manage reimbursement requests of employees for incurred company expenses.</description>
 	<properties>
         <maven.compiler.source>1.8</maven.compiler.source>

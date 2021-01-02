@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div id="form-container">
+        <h1>Reimbursement Request</h1>
+        <form>
+            <label for="amount">Expense (in $):</label><br>
+            <input type="number" id="amount" name="quantity" min="0"><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="10" cols="30" placeholder="Description"></textarea><br>
+            <label for="receipt">Receipt ID:</label><br>
+            <input type="text" id="receipt" name="receipt"><br>
+            <label for="reimb-type">Reimbursement Type:</label><br>
+            <input list="reimb-types" , id="reimb-type" , name="reimb-type"><br>
+            <datalist id="reimb-types">
+                <option value="Lodging">
+                <option value="Travel">
+                <option value="Food">
+                <option value="Other">
+            </datalist><br>
+            <input type="reset">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div id="bottomnav-container">
+        <p>Quick Links:</p>
+        <div class="bottomnav">
+            <a href="employee-main.html">Home</a>
+            <a href="employee-submit-request.html">Submit Request</a>
+            <a href="employee-check-request.html">Check Request</a>
+            <a href="employee-view-requests.html">View Requests</a>
+        </div>
+    </div>
+
+    <script src="employee-submit-request.js"></script>
+
+</body>
+
+</html>

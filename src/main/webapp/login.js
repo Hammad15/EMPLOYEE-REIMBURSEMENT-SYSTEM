@@ -10,18 +10,19 @@ async function loginSubmit(e){
     const credentials = {
         username,
         password
-    }
+    };
 
     try{
-        let res = await fetch("http://localhost:8080/ersApp/login", {
+        let res = await fetch("http://localhost:8080/ersApp/controller/login", {
             method:"POST",
             body: JSON.stringify(credentials),
             headers:{
                 "Content-Type" : "application/json"
+                
             }
         })
-    
-        let user = await res.json()
+        
+        let user = await res.json();
 
         console.log(user);
 
@@ -29,18 +30,18 @@ async function loginSubmit(e){
 
         console.log(h);
 
-        let storage = window.sessionStorage
+        // let storage = window.sessionStorage
 
-        storage.setItem("username",user.username)
-        storage.setItem("firstName",user.firstName)
-        storage.setItem("lastName",user.lastName)
-        storage.setItem("userID",user.userID)
-        storage.setItem("userRole",user.userRole)
+        // storage.setItem("username",user.username)
+        // storage.setItem("firstName",user.firstName)
+        // storage.setItem("lastName",user.lastName)
+        // storage.setItem("userID",user.userID)
+        // storage.setItem("userRole",user.userRole)
 
         if (user.userRole == "employee") {
-            window.location = "employee-main.html"
+            window.location.href = "http://localhost:8080/ersApp/employee-main.html"
         } else if (user.userRole == "manager") {
-            window.location = "manager-main.html"
+            window.location.href = "http://localhost:8080/ersApp/manager-main.html"
         } else {
             console.log("error")
         }

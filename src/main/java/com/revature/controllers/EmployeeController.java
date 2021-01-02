@@ -25,7 +25,8 @@ public class EmployeeController {
 		
 		Reimbursement reimb = om.readValue(req.getInputStream(), Reimbursement.class);
 		
-		HttpSession session = req.getSession();		
+		HttpSession session = req.getSession(false);
+		System.out.println(session.getId());
 		
 		if(session.getAttribute("UserRole") == null) {
 			throw new UnauthenticatedException();
@@ -33,12 +34,15 @@ public class EmployeeController {
 			throw new UnauthorizedException();
 		}
 		
-		User u = (User)req.getAttribute("User");
+		User u = (User)session.getAttribute("User");
+		
+		System.out.println(u);
 		
 		es.submitRequest(u.getUserID(), reimb.getReimbAmount(), reimb.getReimbDescription(), reimb.getReimbReceipt(), reimb.getReimbType());
 		
+		res.setContentType("text/html");
 		res.setStatus(200);
-		res.getWriter().write("The request has been submitted");
+		res.getWriter().write("<p>The request has been submitted</p>");
 		
 	}
 	

@@ -49,7 +49,7 @@ public class FrontController extends HttpServlet {
 		System.out.println(URI);
 		switch (URI) {
 
-		case "/login":
+		case "/controller/login":
 			System.out.println(req.getMethod());
 			switch (req.getMethod()) {
 			case "GET":
@@ -82,6 +82,30 @@ public class FrontController extends HttpServlet {
 			case "POST":
 				res.setStatus(400);
 				res.getWriter().write("Method Not Supported");
+				break;
+			case "PUT":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "DELETE":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			default:
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			}
+			break;
+			
+		case "/controller/employee/submit-request":
+			switch (req.getMethod()) {
+			case "GET":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "POST":
+				empController.submitReimbRequest(req, res);
 				break;
 			case "PUT":
 				res.setStatus(400);
