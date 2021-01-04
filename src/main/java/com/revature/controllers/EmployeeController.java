@@ -40,30 +40,28 @@ public class EmployeeController {
 		
 		es.submitRequest(u.getUserID(), reimb.getReimbAmount(), reimb.getReimbDescription(), reimb.getReimbReceipt(), reimb.getReimbType());
 		
-		res.setContentType("text/html");
 		res.setStatus(200);
-		res.getWriter().write("<p>The request has been submitted</p>");
 		
 	}
 	
-	public void checkReimbRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		
-		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("UserRole") == null) {
-			throw new UnauthenticatedException();
-		} else if(!session.getAttribute("UserRole").equals("employee")) {
-			throw new UnauthorizedException();
-		}
-		
-		User u = (User)req.getAttribute("User");
-		
-		String status = es.checkStatus(u.getUserID());
-		
-		res.setStatus(200);
-		res.getWriter().write(status);
-		
-	}
+//	public void checkReimbRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
+//		
+//		HttpSession session = req.getSession();
+//		
+//		if(session.getAttribute("UserRole") == null) {
+//			throw new UnauthenticatedException();
+//		} else if(!session.getAttribute("UserRole").equals("employee")) {
+//			throw new UnauthorizedException();
+//		}
+//		
+//		User u = (User)req.getAttribute("User");
+//		
+//		String status = es.checkStatus(u.getUserID());
+//		
+//		res.setStatus(200);
+//		res.getWriter().write(status);
+//		
+//	}
 	
 	
 	public void viewAllRequests(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -76,12 +74,17 @@ public class EmployeeController {
 			throw new UnauthorizedException();
 		}
 		
-		User u = (User)req.getAttribute("User");
+		User u = (User)session.getAttribute("User");
 		
 		List<Reimbursement> allReimbursements = es.viewAllRequests(u.getUserID());
+//		List<Reimbursement> allReimbursements = es.viewAllRequests(2);
+		
+		System.out.println(allReimbursements);
 		
 		res.setStatus(200);
 		res.getWriter().write(om.writeValueAsString(allReimbursements));
+		
+//		res.getWriter().write("testing");
 		
 	}
 

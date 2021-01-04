@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <link href="main.css" rel="stylesheet" />
+
+    <title>Employee Page</title>
+
+</head>
+
+<body>
+    <div id="table-container">
+        <h1>Reimbursement Requests</h1>
+        <table id="pending-requests", class="center-align">
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Receipt ID</th>
+                <th>Type</th>
+                <th>User ID</th>
+                <th>Date Submitted</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <form>
+            <label for="reimb-id">The ID of the request you want to approve or reject:</label><br>
+            <input type="number", id="reimb-id", name="reimb-id", min="1"><br>
+            <button id="approve-btn", type="submit">Approve</button>
+            <button id="deny-btn", type="submit">Deny</button>
+        </form>
+    </div>
+
+    <div id="bottomnav-container">
+        <p>Quick Links:</p>
+        <div class="bottomnav">
+            <a href="manager-main.html">Home</a>
+            <a href="manager-approve-deny.html">Approve/Deny Request</a>
+            <a href="manager-view-all.html">View Requests</a>
+        </div>
+    </div>
+
+    <script src="manager-approve-deny.js"></script>
+
+</body>
+
+</html>

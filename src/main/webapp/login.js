@@ -30,13 +30,13 @@ async function loginSubmit(e){
 
         console.log(h);
 
-        // let storage = window.sessionStorage
+        let storage = window.sessionStorage
 
-        // storage.setItem("username",user.username)
-        // storage.setItem("firstName",user.firstName)
-        // storage.setItem("lastName",user.lastName)
-        // storage.setItem("userID",user.userID)
-        // storage.setItem("userRole",user.userRole)
+        storage.setItem("username",user.username)
+        storage.setItem("firstName",user.firstName)
+        storage.setItem("lastName",user.lastName)
+        storage.setItem("userID",user.userID)
+        storage.setItem("userRole",user.userRole)
 
         if (user.userRole == "employee") {
             window.location.href = "http://localhost:8080/ersApp/employee-main.html"

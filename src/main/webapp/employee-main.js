@@ -14,6 +14,4 @@ document.getElementById("user-id").innerHTML = `User ID: ${userID}`
 
 document.getElementById("submit-request").onclick = () => {window.location = "employee-submit-request.html"}
 
-document.getElementById("check-status").onclick = () => {window.location = "employee-check-status.html"}
-
 document.getElementById("view-requests").onclick = () => {window.location = "employee-view-requests.html"}

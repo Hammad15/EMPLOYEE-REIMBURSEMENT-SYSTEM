@@ -3,7 +3,6 @@ package com.revature.servlets;
 import java.io.IOException;
 
 //import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.controllers.AuthController;
 import com.revature.controllers.ErrorController;
+import com.revature.controllers.ManagerController;
 import com.revature.controllers.EmployeeController;
 import com.revature.exceptions.InternalErrorException;
 import com.revature.exceptions.UserNotFoundException;
@@ -26,6 +26,8 @@ public class FrontController extends HttpServlet {
 	private ErrorController errorController = new ErrorController();
 
 	private EmployeeController empController = new EmployeeController();
+	
+	private ManagerController manController = new ManagerController();
 
 	protected void directControl(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// to handle all internal errors/exceptions
@@ -38,11 +40,6 @@ public class FrontController extends HttpServlet {
 
 	protected void directControlRouter(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException, UserNotFoundException, InternalErrorException {
-		
-		System.out.println(this.getInitParameter("DefaultRole"));
-		
-		ServletContext sc = this.getServletContext();
-		System.out.println(sc.getInitParameter("JavaCoolFactor"));
 
 		String URI = req.getRequestURI().substring(req.getContextPath().length(), req.getRequestURI().length());
 
@@ -73,15 +70,15 @@ public class FrontController extends HttpServlet {
 				break;
 			}
 			break;
-
-		case "/reimbursements":
+			
+		case "/controller/employee/submit-request":
 			switch (req.getMethod()) {
 			case "GET":
-				empController.viewAllRequests(req, res);
-				break;
-			case "POST":
 				res.setStatus(400);
 				res.getWriter().write("Method Not Supported");
+				break;
+			case "POST":
+				empController.submitReimbRequest(req, res);
 				break;
 			case "PUT":
 				res.setStatus(400);
@@ -98,15 +95,108 @@ public class FrontController extends HttpServlet {
 			}
 			break;
 			
-		case "/controller/employee/submit-request":
+		case "/controller/employee/view-requests":
 			switch (req.getMethod()) {
 			case "GET":
 				res.setStatus(400);
 				res.getWriter().write("Method Not Supported");
 				break;
 			case "POST":
-				empController.submitReimbRequest(req, res);
+				empController.viewAllRequests(req, res);
 				break;
+			case "PUT":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "DELETE":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			default:
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			}
+			break;
+			
+		case "/controller/manager/view-pending-requests":
+			switch (req.getMethod()) {
+			case "GET":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "POST":
+				manController.viewAllReimbs(req, res);
+			case "PUT":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "DELETE":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			default:
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			}
+			break;
+			
+		case "/controller/manager/approve-request":
+			switch (req.getMethod()) {
+			case "GET":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "POST":
+				manController.approveReimbRequest(req, res);
+				break;
+			case "PUT":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "DELETE":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			default:
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			}
+			break;
+			
+		case "/controller/manager/deny-request":
+			switch (req.getMethod()) {
+			case "GET":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "POST":
+				manController.denyReimbRequest(req, res);
+			case "PUT":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "DELETE":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			default:
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			}
+			break;
+			
+		case "/controller/manager/view-all-requests":
+			switch (req.getMethod()) {
+			case "GET":
+				res.setStatus(400);
+				res.getWriter().write("Method Not Supported");
+				break;
+			case "POST":
+				manController.viewAllReimbs(req, res);
 			case "PUT":
 				res.setStatus(400);
 				res.getWriter().write("Method Not Supported");

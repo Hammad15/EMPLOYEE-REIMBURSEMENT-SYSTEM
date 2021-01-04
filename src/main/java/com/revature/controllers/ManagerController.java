@@ -62,8 +62,11 @@ public class ManagerController {
 
 	public void viewAllReimbsByStatus(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
+		System.out.println("Debugging Pending Request Servlet");
 		
-		String status = req.getParameter("reimbStatus");
+		Reimbursement reimb = om.readValue(req.getInputStream(), Reimbursement.class);
+		
+		System.out.println(reimb);
 
 		HttpSession session = req.getSession();
 
@@ -73,7 +76,9 @@ public class ManagerController {
 			throw new UnauthorizedException();
 		}
 
-		List<Reimbursement> allReimbs = ms.viewAllRequestsByStatus(status);
+		List<Reimbursement> allReimbs = ms.viewAllRequestsByStatus(reimb.getReimbStatus());
+		
+		System.out.println(allReimbs);
 
 		res.setStatus(200);
 		res.getWriter().write(om.writeValueAsString(allReimbs));
@@ -103,13 +108,15 @@ public class ManagerController {
 	public void approveReimbRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		
-		String reimbID_S = req.getParameter("reimbID");
+		System.out.println("Debugging Approve Request Servlet");
 		
-		int reimbID = Integer.parseInt(reimbID_S);
+		Reimbursement reimb = om.readValue(req.getInputStream(), Reimbursement.class);
+		
+		System.out.println(reimb.getReimbID());
 
 		HttpSession session = req.getSession();
 		
-		User u = (User)req.getAttribute("User");
+		User u = (User)session.getAttribute("User");
 
 		if (session.getAttribute("UserRole") == null) {
 			throw new UnauthenticatedException();
@@ -117,23 +124,27 @@ public class ManagerController {
 			throw new UnauthorizedException();
 		}
 
-		ms.approveRequest(reimbID, u.getUserID());
+		ms.approveRequest(reimb.getReimbID(), u.getUserID());
+		
+		System.out.println("The reimbursement request with ID: " + reimb.getReimbID() + " has been approved");
 
 		res.setStatus(200);
-		res.getWriter().write("The reimbursement request with ID: " + reimbID + " has been approved");
+		res.getWriter().write("The reimbursement request with ID: " + reimb.getReimbID() + " has been approved");
 
 	}
 	
 	public void denyReimbRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		
-		String reimbID_S = req.getParameter("reimbID");
+		System.out.println("Debugging Deny Request Servlet");
 		
-		int reimbID = Integer.parseInt(reimbID_S);
+		Reimbursement reimb = om.readValue(req.getInputStream(), Reimbursement.class);
+		
+		System.out.println(reimb.getReimbID());
 
 		HttpSession session = req.getSession();
 		
-		User u = (User)req.getAttribute("User");
+		User u = (User)session.getAttribute("User");
 
 		if (session.getAttribute("UserRole") == null) {
 			throw new UnauthenticatedException();
@@ -141,10 +152,10 @@ public class ManagerController {
 			throw new UnauthorizedException();
 		}
 
-		ms.denyRequest(reimbID, u.getUserID());
+		ms.denyRequest(reimb.getReimbID(), u.getUserID());
 
 		res.setStatus(200);
-		res.getWriter().write("The reimbursement request with ID: " + reimbID + " has been approved");
+		res.getWriter().write("The reimbursement request with ID: " + reimb.getReimbID() + " has been approved");
 
 	}
 
