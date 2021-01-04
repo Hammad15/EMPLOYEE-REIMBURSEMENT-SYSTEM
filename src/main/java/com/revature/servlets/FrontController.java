@@ -126,7 +126,7 @@ public class FrontController extends HttpServlet {
 				res.getWriter().write("Method Not Supported");
 				break;
 			case "POST":
-				manController.viewAllReimbs(req, res);
+				manController.viewAllReimbsByStatus(req, res);
 				break;
 			case "PUT":
 				res.setStatus(400);

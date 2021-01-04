@@ -7,12 +7,11 @@ h1{
 }
 
 #user-information{
-    background-color: teal;
     width: 100%;
     padding: 10px;
     border-radius: 3px;
     text-align: center;
-    color: lightgray;
+    color: teal;
     margin-top: 10px;
     margin-bottom: 30px;
 }
