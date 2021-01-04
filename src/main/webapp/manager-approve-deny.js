@@ -1,4 +1,4 @@
-async function viewRequests(e) {
+async function viewPendingRequests(e) {
 
     e.preventDefault();
 
@@ -130,6 +130,6 @@ async function denyReq(e){
 }
 
 
-window.addEventListener("load", viewRequests);
+window.addEventListener("load", viewPendingRequests);
 document.getElementById("approve-btn").addEventListener("click", approveReq);
 document.getElementById("deny-btn").addEventListener("click", denyReq);

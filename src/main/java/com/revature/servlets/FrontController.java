@@ -127,6 +127,7 @@ public class FrontController extends HttpServlet {
 				break;
 			case "POST":
 				manController.viewAllReimbs(req, res);
+				break;
 			case "PUT":
 				res.setStatus(400);
 				res.getWriter().write("Method Not Supported");
@@ -197,6 +198,7 @@ public class FrontController extends HttpServlet {
 				break;
 			case "POST":
 				manController.viewAllReimbs(req, res);
+				break;
 			case "PUT":
 				res.setStatus(400);
 				res.getWriter().write("Method Not Supported");

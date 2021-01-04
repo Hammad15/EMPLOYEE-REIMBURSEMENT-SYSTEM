@@ -1,4 +1,4 @@
-async function viewRequests(e) {
+async function viewAllRequests(e) {
 
     e.preventDefault();
 
@@ -13,7 +13,7 @@ async function viewRequests(e) {
         let pastTickets = await res.json();
         console.log(pastTickets)
 
-        var table = document.getElementById("pending-requests");
+        var table = document.getElementById("reimbursements");
 
         for (let i = 0; i < pastTickets.length; i++) {
 
@@ -67,6 +67,6 @@ async function viewRequests(e) {
 
 }
 
-window.addEventListener("load", viewRequests);
+window.addEventListener("load", viewAllRequests);
 // document.getElementById("approve-btn").addEventListener("click", approveReq);
 // document.getElementById("deny-btn").addEventListener("click", denyReq);
