@@ -33,8 +33,8 @@
         <form>
             <label for="reimb-id">The ID of the request you want to approve or reject:</label><br>
             <input type="number", id="reimb-id", name="reimb-id", min="1"><br>
-            <button id="approve-btn", type="submit">Approve</button>
-            <button id="deny-btn", type="submit">Deny</button>
+            <button id="approve-btn", type="submit", onClick="window.location.reload()">Approve</button>
+            <button id="deny-btn", type="submit", onClick="window.location.reload()">Deny</button>
         </form>
     </div>
 
