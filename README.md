@@ -38,4 +38,4 @@ To-do list:
 * Create an identical database by running the script named "ersDatabase.sql" in the database folder
 * Set up your environment variables in the configuration file
 * Run the file "com.revature.launcher.ERSAppLauncher.java"
-* Go to (http://localhost:8080/ersApp/login.html) to get started
+* Go to http://localhost:8080/ersApp/login.html to get started
