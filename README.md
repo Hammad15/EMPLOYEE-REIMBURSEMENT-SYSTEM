@@ -32,9 +32,9 @@ To-do list:
 * Encrypt passwords
 
 ## Getting Started
-* Install the Apache Tomcat
-* Install any Java-compatible IDE
-* Download the code using the command $ `git clone https://github.com/Hammad15/EMPLOYEE-REIMBURSEMENT-SYSTEM.git`
+* Install the Apache Tomcat and install any Java-compatible IDE
+* Download the code using the command $ `git clone https://github.com/Hammad15/EMPLOYEE-REIMBURSEMENT-SYSTEM.git` 
+in bash and import the project in the IDE
 * Create an identical database by running the script named "ersDatabase.sql" in the database folder
 * Set up your environment variables in the configuration file
 * Run the file "com.revature.launcher.ERSAppLauncher.java"
