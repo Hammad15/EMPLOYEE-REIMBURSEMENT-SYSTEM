@@ -29,6 +29,7 @@ are authorized to approve and deny requests for expense reimbursement.
 To-do list:
 * The ability for new users to register
 * The ability to upload reciepts for reimbursement requests
+* the ability for users to log out
 * Encrypt passwords
 
 ## Getting Started
@@ -39,3 +40,7 @@ in bash and import the project in the IDE
 * Set up your environment variables in the configuration file
 * Run the file "com.revature.launcher.ERSAppLauncher.java"
 * Go to http://localhost:8080/ersApp/login.html to get started
+
+## Usage
+* Enter employee credentials and you will be taken to the employee menu from where there are options to either submit a new reimbursement request or view past tickets.
+* Enter manager credentials and you will be taken to the manager menu from where there are options to either approve or deny a pending reimbursement request or view past tickets of all employees.
