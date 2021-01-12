@@ -20,3 +20,21 @@ are authorized to approve and deny requests for expense reimbursement.
 * JavaScript
 * AJAX
 * Git
+
+## Features
+* Users (Employees) can submit reimbursement requests
+* Users (Managers) can view pending requests and approve or deny them.
+* Users can view a history of previous requests.
+
+To-do list:
+* The ability for new users to register
+* The ability to upload reciepts for reimbursement requests
+* Encrypt passwords
+
+## Getting Started
+* Install the Apache Tomcat
+* Install any Java-compatible IDE
+* Download the code using the command $ `git clone https://github.com/Hammad15/EMPLOYEE-REIMBURSEMENT-SYSTEM.git`
+* Create an identical database by running the script named "ersDatabase.sql" in the database folder
+* Set up your environment variables in the configuration file
+* Run the file "com.revature.launcher.ERSAppLauncher.java"
