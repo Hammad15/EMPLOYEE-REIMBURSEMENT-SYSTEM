@@ -44,3 +44,6 @@ in bash and import the project in the IDE
 ## Usage
 * Enter employee credentials and you will be taken to the employee menu from where there are options to either submit a new reimbursement request or view past tickets.
 * Enter manager credentials and you will be taken to the manager menu from where there are options to either approve or deny a pending reimbursement request or view past tickets of all employees.
+
+## License
+The project uses the following license: https://github.com/Hammad15/EMPLOYEE-REIMBURSEMENT-SYSTEM/blob/main/LICENSE
